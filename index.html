@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabriel Oliveira | Official Site</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #05060A;
+            --accent-blue: #00D1FF;
+            --accent-blue-glow: rgba(0, 209, 255, 0.5);
+            --text-primary: #FFFFFF;
+            --text-secondary: #A0A0A0;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- Scroll Reveal --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Glassmorphism Utility --- */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+        }
+
+        /* --- Header --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            background: rgba(5, 6, 10, 0.8);
+            backdrop-filter: blur(20px);
+            padding: 1rem 5%;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            color: var(--accent-blue);
+            text-shadow: 0 0 10px var(--accent-blue-glow);
+        }
+
+        .btn-tickets-nav {
+            background: var(--accent-blue);
+            color: #000 !important;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            box-shadow: 0 0 15px var(--accent-blue-glow);
+        }
+
+        /* --- Hero Section --- */
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 0 5%;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60%;
+            height: 100%;
+            background: url('https://raw.githubusercontent.com/diegoarcanjo35/Gabriel-Cantor/main/Imagen%201.jpg') center/cover no-repeat;
+            mask-image: linear-gradient(to left, black 60%, transparent);
+            -webkit-mask-image: linear-gradient(to left, black 60%, transparent);
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: rgba(0, 209, 255, 0.1);
+            border: 1px solid var(--accent-blue);
+            color: var(--accent-blue);
+            font-size: 0.75rem;
+            font-weight: 700;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(3.5rem, 8vw, 6rem);
+            line-height: 0.9;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .hero-title span {
+            color: var(--accent-blue);
+            text-shadow: 0 0 30px var(--accent-blue-glow);
+        }
+
+        .hero-bio {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            max-width: 450px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--accent-blue);
+            color: #000;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border-radius: 4px;
+            transition: var(--transition);
+            box-shadow: 0 10px 30px rgba(0, 209, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 209, 255, 0.5);
+        }
+
+        /* --- Music Section --- */
+        section {
+            padding: 100px 5%;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .music-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .player-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            border: 1px solid var(--glass-border);
+        }
+
+        .player-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .social-links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .social-card {
+            padding: 2rem;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .social-card:hover {
+            background: rgba(0, 209, 255, 0.05);
+            border-color: var(--accent-blue);
+            transform: translateY(-5px);
+        }
+
+        .social-card svg {
+            width: 32px;
+            height: 32px;
+            margin-bottom: 1rem;
+            fill: var(--accent-blue);
+        }
+
+        .social-card span {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* --- Agenda Section --- */
+        .agenda-list {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .agenda-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .agenda-item:hover {
+            background: rgba(255,255,255,0.05);
+        }
+
+        .event-date {
+            text-align: center;
+            min-width: 80px;
+        }
+
+        .event-date .day {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: 700;
+            font-family: var(--font-display);
+            color: var(--accent-blue);
+        }
+
+        .event-date .month {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+        }
+
+        .event-info h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .event-info p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .btn-buy {
+            padding: 0.8rem 1.5rem;
+            border: 1px solid var(--accent-blue);
+            color: var(--accent-blue);
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            transition: var(--transition);
+        }
+
+        .btn-buy:hover {
+            background: var(--accent-blue);
+            color: #000;
+        }
+
+        /* --- Registration Section --- */
+        .register-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 3rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--glass-border);
+            padding: 1rem;
+            color: white;
+            border-radius: 8px;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus {
+            border-color: var(--accent-blue);
+            background: rgba(255,255,255,0.08);
+        }
+
+        /* --- Admin Panel --- */
+        .admin-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            min-height: 500px;
+        }
+
+        .admin-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 1rem;
+            overflow-x: auto;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            padding: 0.8rem 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .tab-btn.active {
+            color: var(--accent-blue);
+            border-bottom: 2px solid var(--accent-blue);
+        }
+
+        .tab-content {
+            display: none;
+            padding: 2rem;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            text-align: left;
+            padding: 1rem;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        td {
+            padding: 1.2rem 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.9rem;
+        }
+
+        /* --- Modal --- */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            width: 100%;
+            max-width: 450px;
+            padding: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .qr-container {
+            position: relative;
+            display: inline-block;
+            margin: 2rem 0;
+            padding: 15px;
+            background: white;
+            border-radius: 12px;
+        }
+
+        .qr-container img {
+            display: block;
+            width: 200px;
+            height: 200px;
+        }
+
+        .scanner-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent-blue);
+            box-shadow: 0 0 15px var(--accent-blue);
+            animation: scan 2s ease-in-out infinite;
+        }
+
+        @keyframes scan {
+            0%, 100% { top: 0%; }
+            50% { top: 100%; }
+        }
+
+        .ticket-info {
+            margin-top: 2rem;
+            text-align: left;
+            border-top: 1px solid var(--glass-border);
+            padding-top: 1.5rem;
+        }
+
+        .ticket-info p {
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .ticket-info span {
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            display: block;
+        }
+
+        /* --- Floating Button --- */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+            z-index: 900;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        .whatsapp-float span {
+            position: absolute;
+            right: 70px;
+            background: white;
+            color: black;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .whatsapp-float:hover span {
+            opacity: 1;
+            visibility: visible;
+            right: 80px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            padding: 4rem 5%;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .footer-logo {
+            height: 50px;
+            margin-bottom: 2rem;
+        }
+
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .music-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-bg {
+                width: 100%;
+                opacity: 0.4;
+            }
+
+            .hero-content {
+                text-align: center;
+            }
+
+            .agenda-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+            }
+
+            .admin-tabs {
+                padding-bottom: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <div class="logo">
+            <img src="https://raw.githubusercontent.com/diegoarcanjo35/Gabriel-Cantor/main/Gabriel%20Logo.png" alt="Gabriel Oliveira Logo">
+        </div>
+        <ul class="nav-menu">
+            <li><a href="#hero">Início</a></li>
+            <li><a href="#musica">Música</a></li>
+            <li><a href="#agenda">Agenda</a></li>
+            <li><a href="#admin">Admin</a></li>
+            <li><a href="javascript:void(0)" class="btn-tickets-nav" onclick="toggleModal()">MEUS INGRESSOS</a></li>
+        </ul>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero">
+            <div class="hero-bg"></div>
+            <div class="hero-content reveal">
+                <span class="hero-badge">THE VOICE BRASIL 2025</span>
+                <h1 class="hero-title">GABRIEL<br><span>OLIVEIRA</span></h1>
+                <p class="hero-bio">A nova voz do sertanejo futurista. Prepare-se para uma experiência sonora sem precedentes.</p>
+                <a href="#musica" class="btn-primary">Ouça Agora</a>
+            </div>
+        </section>
+
+        <!-- Music Section -->
+        <section id="musica">
+            <h2 class="section-title reveal">Ouça Agora</h2>
+            <div class="music-container">
+                <div class="player-wrapper reveal">
+                    <iframe src="https://www.youtube.com/embed/GLWFECXZK7Q" title="Gabriel Oliveira - Resenha Aleatória" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                <div class="social-links reveal">
+                    <a href="https://instagram.com/cantorgabrieloliveira" target="_blank" class="social-card glass">
+                        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        <span>Instagram</span>
+                    </a>
+                    <a href="https://www.tiktok.com/@cantorgabrieloliveira" target="_blank" class="social-card glass">
+                        <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.86-.6-4.12-1.31a6.417 6.417 0 0 1-1.87-1.55v7.36c.03 3.41-1.24 6.86-4.36 8.71-3.13 1.85-7.32 1.45-10.09-.97-2.77-2.42-3.53-6.55-1.93-9.71 1.61-3.15 5.24-4.64 8.6-3.6v4.01c-1.89-.88-4.27-.04-5.18 1.85-.91 1.89-.04 4.27 1.85 5.18 1.89.91 4.27.04 5.18-1.85.69-1.43.52-3.12.52-4.68V0h.02z"/></svg>
+                        <span>TikTok</span>
+                    </a>
+                    <a href="https://www.youtube.com/c/CantorGabrielOliveira" target="_blank" class="social-card glass">
+                        <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        <span>YouTube</span>
+                    </a>
+                    <a href="https://s.kw.ai/ndLNBp6a" target="_blank" class="social-card glass">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+                        <span>Kwai</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Agenda Section -->
+        <section id="agenda">
+            <h2 class="section-title reveal">Agenda de Shows</h2>
+            <div class="agenda-list">
+                <div class="agenda-item glass reveal">
+                    <div class="event-date">
+                        <span class="day">20</span>
+                        <span class="month">Mai</span>
+                    </div>
+                    <div class="event-info">
+                        <h4>São Paulo, SP</h4>
+                        <p>Espaço Unimed - 22:00h</p>
+                    </div>
+                    <a href="#" class="btn-buy">Comprar</a>
+                </div>
+                <div class="agenda-item glass reveal">
+                    <div class="event-date">
+                        <span class="day">24</span>
+                        <span class="month">Mai</span>
+                    </div>
+                    <div class="event-info">
+                        <h4>Rio de Janeiro, RJ</h4>
+                        <p>Vivo Rio - 21:30h</p>
+                    </div>
+                    <a href="#" class="btn-buy">Comprar</a>
+                </div>
+                <div class="agenda-item glass reveal">
+                    <div class="event-date">
+                        <span class="day">02</span>
+                        <span class="month">Jun</span>
+                    </div>
+                    <div class="event-info">
+                        <h4>Goiânia, GO</h4>
+                        <p>Arena Multiplace - 23:00h</p>
+                    </div>
+                    <a href="#" class="btn-buy">Comprar</a>
+                </div>
+                <div class="agenda-item glass reveal">
+                    <div class="event-date">
+                        <span class="day">15</span>
+                        <span class="month">Jun</span>
+                    </div>
+                    <div class="event-info">
+                        <h4>Curitiba, PR</h4>
+                        <p>Teatro Positivo - 20:00h</p>
+                    </div>
+                    <a href="#" class="btn-buy">Comprar</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Registration Section -->
+        <section id="cadastro">
+            <h2 class="section-title reveal">Cadastro de Fãs</h2>
+            <div class="register-container glass reveal">
+                <form onsubmit="event.preventDefault(); alert('Cadastro realizado com sucesso!')">
+                    <div class="form-group">
+                        <label>Nome Completo</label>
+                        <input type="text" placeholder="Seu nome aqui" required>
+                    </div>
+                    <div class="form-group">
+                        <label>E-mail</label>
+                        <input type="email" placeholder="seu@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>CPF</label>
+                        <input type="text" placeholder="000.000.000-00" required>
+                    </div>
+                    <div class="form-group">
+                        <label>WhatsApp</label>
+                        <input type="tel" placeholder="(00) 00000-0000" required>
+                    </div>
+                    <button type="submit" class="btn-primary" style="width: 100%; border: none; cursor: pointer;">Cadastrar Agora</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Admin Panel Section -->
+        <section id="admin">
+            <h2 class="section-title reveal">Admin Panel</h2>
+            <div class="admin-container glass reveal">
+                <div class="admin-tabs">
+                    <button class="tab-btn active" onclick="openTab(event, 'ingressos')">Ingressos</button>
+                    <button class="tab-btn" onclick="openTab(event, 'eventos')">Eventos</button>
+                    <button class="tab-btn" onclick="openTab(event, 'cupons')">Cupons</button>
+                    <button class="tab-btn" onclick="openTab(event, 'fas')">Base de Fãs</button>
+                </div>
+
+                <div id="ingressos" class="tab-content active">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Setor</th>
+                                <th>Lote</th>
+                                <th>Preço</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Pista Premium</td>
+                                <td>02</td>
+                                <td>R$ 180,00</td>
+                                <td style="color: var(--accent-blue)">Ativo</td>
+                            </tr>
+                            <tr>
+                                <td>Camarote VIP</td>
+                                <td>01</td>
+                                <td>R$ 350,00</td>
+                                <td style="color: #FF4B4B">Esgotado</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="eventos" class="tab-content">
+                    <div style="text-align: center; padding: 2rem;">
+                        <button class="btn-buy">+ Cadastrar Novo Show</button>
+                    </div>
+                </div>
+
+                <div id="cupons" class="tab-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Desconto</th>
+                                <th>Regra</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>GABRIEL20</td>
+                                <td>20%</td>
+                                <td>1 por CPF</td>
+                                <td style="color: var(--accent-blue)">Ativo</td>
+                            </tr>
+                            <tr>
+                                <td>VIPFANS</td>
+                                <td>Exclusivo</td>
+                                <td>Fãs Cadastrados</td>
+                                <td style="color: var(--accent-blue)">Ativo</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="fas" class="tab-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>CPF</th>
+                                <th>WhatsApp</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Ricardo Santos</td>
+                                <td>123.***.***-90</td>
+                                <td>(11) 99887-****</td>
+                            </tr>
+                            <tr>
+                                <td>Juliana Lima</td>
+                                <td>456.***.***-12</td>
+                                <td>(21) 98765-****</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal My Tickets -->
+    <div class="modal" id="ticketModal">
+        <div class="modal-content glass">
+            <button class="close-modal" onclick="toggleModal()">&times;</button>
+            <h3 style="font-family: var(--font-display); color: var(--accent-blue);">INGRESSO VIRTUAL ATIVO</h3>
+            
+            <div class="qr-container">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=GABRIEL-OLIVEIRA-2025" alt="QR Code Ingresso">
+                <div class="scanner-line"></div>
+            </div>
+
+            <div class="ticket-info">
+                <p><span>Evento</span>Gabriel Oliveira - Tour 2025</p>
+                <p><span>Setor</span>VIP Premium</p>
+                <p><span>Nome</span>Fã Oficial Gabriel Oliveira</p>
+                <p><span>CPF</span>***.456.789-**</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/5517997394074" target="_blank" class="whatsapp-float">
+        <span>Shows</span>
+        <svg viewBox="0 0 24 24" width="30" height="30" fill="white"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.588-5.946 0-6.556 5.332-11.891 11.891-11.891 3.181 0 6.167 1.24 8.413 3.488 2.246 2.248 3.484 5.232 3.484 8.403 0 6.556-5.332 11.891-11.891 11.891-2.01 0-3.98-.51-5.725-1.479l-6.271 1.697zm6.514-3.419c1.512.897 3.03 1.349 4.72 1.349 4.901 0 8.891-3.99 8.891-8.891 0-2.376-.925-4.61-2.601-6.286-1.678-1.678-3.911-2.603-6.29-2.603-4.901 0-8.891 3.99-8.891 8.891 0 1.784.533 3.427 1.542 4.856l-.997 3.637 3.726-.953zm10.376-5.514c-.277-.139-1.641-.809-1.895-.901-.254-.093-.439-.139-.624.139-.185.277-.717.901-.878 1.086-.161.185-.323.208-.6.069-.277-.139-1.171-.432-2.231-1.377-.825-.736-1.382-1.645-1.543-1.922-.161-.277-.017-.427.121-.565.125-.124.277-.323.416-.485.139-.161.185-.277.277-.462.093-.185.046-.347-.023-.485-.069-.139-.624-1.503-.855-2.058-.225-.54-.471-.466-.647-.475-.166-.008-.356-.01-.546-.01s-.498.071-.758.347c-.26.277-.993.971-.993 2.37s1.017 2.749 1.156 2.934c.139.185 2.002 3.056 4.849 4.283.677.292 1.206.466 1.618.597.681.216 1.301.185 1.791.112.546-.081 1.641-.67 1.872-1.317.231-.647.231-1.201.161-1.317-.069-.116-.254-.185-.531-.324z"/></svg>
+    </a>
+
+    <footer>
+        <img src="https://raw.githubusercontent.com/diegoarcanjo35/Gabriel-Cantor/main/Gabriel%20Logo.png" alt="Logo Footer" class="footer-logo">
+        <p class="copyright">&copy; 2025 Gabriel Oliveira. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // Header Scroll Effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll Reveal
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        window.onload = reveal;
+
+        // Modal Toggle
+        function toggleModal() {
+            const modal = document.getElementById('ticketModal');
+            modal.classList.toggle('active');
+            if (modal.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Admin Tabs
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+                tabcontent[i].classList.remove("active");
+            }
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.className += " active";
+        }
+    </script>
+</body>
+</html>
